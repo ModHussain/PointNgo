@@ -1,0 +1,211 @@
+<html>
+<head>
+			<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+		    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+			<script src="reg.js" ></script>
+			<link rel="stylesheet" href="reg.css">
+	<style>
+        input.ng-invalid.ng-dirty{border: 1px; solid:red;}
+    </style>
+</head>
+
+<body  ng-app="myApp">
+ <div class="container">
+   <div id="signup">
+      <div class="signup-screen">
+         <div class="space-bot text-center">
+            <h1>DATA ENTRY FORM</h1>
+          
+           <form class="form-register" name="register" action="/new" method="POST">
+	            
+				<div class="input-field col s8">
+				
+              <input id="bname" 
+			  type="text"  
+			  name="bname" 
+			  class="validate"  
+			  required
+			  ng-model="bname"
+			  ng-pattern=""
+			  ng-minlength="3"/>
+
+              <label for="bname2" style="color: #FFF5EE"> BUSINESS Name</label>
+			   <p class="alert alert-danger" ng-show="register.bname.$dirty && register.bname.$error.minlength">Business Name should be minimum 3 characters</p>
+			 <p class="alert alert-danger" ng-show="register.name.$touched && register.name.$invalid">Number is invalid character</p>
+				
+            </div>
+			
+			 <div class="input-field col s8">
+              <input id="sname" 
+			  type="text" 
+			  name="sname" 
+			  class="validate" 
+			  required
+			  ng-model="sname"
+			  ng-pattern=""
+			   ng-minlength="3"/>
+              <label for="surname" style="color: #FFF5EE">SERVICE Name</label>
+			  <p class="alert alert-danger" ng-show="register.sname.$dirty && register.sname.$error.minlength">service name should be minimum 3 characters</p>
+			  <p class="alert alert-danger" ng-show="register.surname.$touched && register.surname.$invalid">Number is invalid character</p>
+             </div>
+			
+			
+			 <div class="input-field col s8" >
+			 <input id="addr" 
+			 type="text" 
+			 name="addr" 
+			 class="validate" 
+			 ng-model="addr"
+			 required
+			>
+			<label for="year" style="color: #FFF5EE">ADDRESS</label>
+			<p class="alert alert-danger" ng-show="register.year.$touched && register.year.$invalid">please enter the date in YYYY-MM-DD format</p>
+			</div>
+			 
+				
+			 
+			 <div class="input-field col s8">
+              <input id="city" 
+			  type="text" 
+			  name="city" 
+			  ng-model="city" 
+			  class="validate" 
+			  required
+			  >
+              <label for="city" style="color: #FFF5EE">CITY</label>
+             <p class="alert alert-danger" ng-show="form-register.email.$error.email">Your email is invalid.</p>
+			</div>
+			 
+			 <div ng-controller="RegisterCtrl">
+			 <div class="input-field col s8">
+			 
+               <input id="state" 
+			   type="text" 
+			   name="state" 
+			   ng-model="state" 
+			   class="validate" 
+			   required
+			>
+			<label for="state" style="color: #FFF5EE">STATE </label>
+            	
+			  <p class="alert alert-danger" ng-show="!passValidation && password_error_show > 0">
+			   Password must be alphanumeric, 1 lower & upper letter & 1 special character(!@#$%^&*).
+				Password length must be between 8-13
+				</p>
+			 </div>
+           
+				
+			<div class="input-field col s8">
+               <input id="pcode" 
+			   type="number" 
+			   name="pcode" 
+			   ng-model="pcode" 
+			   class="validate" 
+			   required
+			   ng-maxlength="6"
+			ng-minlength="6"
+			   >
+				<label for="pcode" style="color: #FFF5EE">POSTAL CODE</label>
+			    <p class="alert alert-danger" ng-show="register.pcode.$dirty && register.pcode.$error.minlength">please enter 6 numbers</p>
+			<p class="alert alert-danger" ng-show="register.pcode.$dirty && register.pcode.$error.maxlength">do not enter more than 6 numbers</p>
+		
+				</div>
+			</div>
+			 
+			 <div class="input-field col s8">
+			 <input id="lotd"
+			 type="text" 
+			name="lotd"
+			ng-model="lotd"
+			required
+			class="validate"
+			ng-maxlength="19"
+			ng-minlength="3"
+			ng-pattern="/^[0-9]{1,7}(\.[0-9]+)?$/"
+			/>
+			<label for="lotd" style="color: #FFF5EE">LONGITUDE</label>
+			<p class="alert alert-danger" ng-show="register.lotd.$dirty && register.lotd.$error.minlength">please enter minimum 3 numbers</p>
+			<p class="alert alert-danger" ng-show="register.lotd.$dirty && register.lotd.$error.maxlength">do not enter more than 19 numbers</p>
+			</div>
+			
+			
+			<div class="input-field col s8">
+			 <input id="latd"
+			 type="text" 
+			name="latd"
+			ng-model="latd"
+			required
+			class="validate"
+			ng-maxlength="19"
+			ng-minlength="3"
+			ng-pattern="/^[0-9]{1,7}(\.[0-9]+)?$/"
+			/>
+			<label for="latd" style="color: #FFF5EE">LATITUDE</label>
+			<p class="alert alert-danger" ng-show="register.latd.$dirty && register.latd.$error.minlength">please enter minimum 3 numbers</p>
+			<p class="alert alert-danger" ng-show="register.latd.$dirty && register.latd.$error.maxlength">do not enter more than 19 numbers</p>
+			</div>
+			
+			
+			<div class="input-field col s8">
+			 <input id="tag"
+			 type="text" 
+			name="tag"
+			ng-model="tag"
+			required
+			/>
+			<label for="tag" style="color: #FFF5EE">TAGS</label>
+			</div>
+
+				
+			
+			
+			
+			  <div class="space-top text-center">
+               <button type="submit" class="waves-effect waves-light btn done">
+               <b class="material-icons left">SAVE</b> 
+               </button>
+               <button type="reset" class="waves-effect waves-light btn cancel">
+               <b class="material-icons left">RESET</b>
+               </button>
+              </div>
+             </form>
+           </div>
+        </div>
+         </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+$(document).ready(function(){
+	$('#show_hide').on('click', function(){
+		var passwordField = $('#password');
+		var passwordFieldType = passwordField.attr('type');
+		if(passwordFieldType == 'password')
+		{
+		passwordField.attr('type', 'text');
+		$(this).text('hide');
+		}
+		else
+		{
+		passwordField.attr('type', 'password');
+		$(this).text('show');
+		}
+	});
+});
+</script>			  
+			  
+			  
+			  
+			  
+			  
+			  
